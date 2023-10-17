@@ -1,0 +1,19 @@
+{{template "base" .}}
+
+{{define "content"}}
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h1>This is the about page</h1>
+                <p>this is data trasnfered and it says: {{index .StringMap "teste"}}</p>
+                <p>
+                    {{if ne (index .StringMap "remote_ip") ""}}
+                        your remote IP is {{index .StringMap "remote_ip"}}
+                    {{else}}
+                        I don't know your IP yet. Visit the <a href="/">Home Page</a> and I can see you
+                    {{end}}
+                </p>
+            </div>
+        </div>
+    </div>
+{{end}}
