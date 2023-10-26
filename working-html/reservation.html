@@ -8,79 +8,86 @@
 
     <title>My Nice Page</title>
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
         integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/notie/dist/notie.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.15.5/dist/sweetalert2.min.css">
+    <link rel="stylesheet" type="text/css" href="static/css/styles.css">
 
-    <style>
-        .my-footer {
-            height: 5em;
-            background-color: #163b65;
-            margin-top: 1.5em;
-            padding: 1em;
-            color: white;
-            font-size: 80%;
-        }
-    </style>
 </head>
 
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-<a class="navbar-brand" href="#">Navbar</a>
-<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-<span class="navbar-toggler-icon"></span>
-</button>
-<div class="collapse navbar-collapse" id="navbarNav">
-<ul class="navbar-nav">
-  <li class="nav-item active">
-    <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="about.html">About</a>
-  </li>
-  <li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      Rooms
-    </a>
-    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-      <a class="dropdown-item" href="general.html">General's Quarters</a>
-      <a class="dropdown-item" href="major.html">Major's Suite</a>
-    </div>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="reservation.html" tabindex="-1" aria-disable="true">Cadastro</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="contact.html" tabindex="-1" aria-disable="true">Contact</a>
-  </li>
-  
-</ul>
-</div>
-</nav>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="about.html">About</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Rooms
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="general.html">General's Quarters</a>
+                        <a class="dropdown-item" href="major.html">Major's Suite</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="reservation.html" tabindex="-1" aria-disable="true">Cadastro</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="contact.html" tabindex="-1" aria-disable="true">Contact</a>
+                </li>
 
-<div class="container-fluid">
-    <div class="row">
-        <div class="col">
-            <h1 class="text-center mt-4">Cadastro de Beneficiário</h1>
+            </ul>
         </div>
-    </div>
+    </nav>
 
-    <div class="container overflow-hidden">
-            <form class="row gy-5">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col">
+                <h1 class="text-center mt-4">Cadastro de Beneficiário</h1>
+            </div>
+        </div>
+
+        <div class="container overflow-hidden">
+            <form class="needs-validation" novalidate>
 
                 <div class="col-12">
                     <label for="inputName" class="form-label">Nome Completo</label>
-                    <input required type="text" class="form-control" id="inputName" name="inputName" placeholder="Nome e sobrenome" autocomplete="off">
+                    <input required type="text" class="form-control" id="inputName" name="inputName"
+                        placeholder="Nome e sobrenome" autocomplete="off">
+                    <div class="invalid-feedback">
+                        Favor preencher com o nome completo.
+                    </div>
                 </div>
 
                 <div class="col-md-8">
                     <label for="inputStreet" class="form-label">Endereço</label>
-                    <input type="text" class="form-control" id="inputStreet" name="inputStreet" placeholder="Endereço completo aqui">
+                    <input required type="text" class="form-control" id="inputStreet" name="inputStreet"
+                        placeholder="Endereço completo aqui">
+                    <div class="invalid-feedback">
+                        Favor preencher com o endereço completo.
+                    </div>
                 </div>
 
                 <div class="col-md-2">
                     <label for="inputStreetNumber" class="form-label">Número</label>
-                    <input type="number" class="form-control" id="inputStreetNumber" name="inputStreetNumber" placeholder="Número">
+                    <input required type="number" class="form-control" id="inputStreetNumber" name="inputStreetNumber"
+                        placeholder="Número">
+                    <div class="invalid-feedback">
+                        Favor preencher com o número da residência.
+                    </div>
                 </div>
 
                 <div class="col-md-2">
@@ -90,39 +97,52 @@
 
                 <div class="col-md-12">
                     <label for="inputPhone" class="form-label">Telefone</label>
-                    <input type="text" class="form-control" id="inputPhone" name="inputPhone" placeholder="Telefone">
+                    <input required type="text" class="form-control" id="inputPhone" name="inputPhone"
+                        placeholder="Telefone">
+                    <div class="invalid-feedback">
+                        Favor preencher com o telefone (XX) XXXXX-XXXX.
+                    </div>
                 </div>
-                
+
                 <div class="col-md-4">
                     <label for="inputCity" class="form-label">Cidade</label>
-                    <select id="inputCity" class="form-control">
-                        <option selected>Selecione a cidade</option>
+                    <select required id="inputCity" class="form-control">
+                        <option selected></option>
                         <option value="Cariacica">Cariacica</option>
                         <option value="Serra">Serra</option>
                         <option value="Vitória">Vitória</option>
                     </select>
+                    <div class="invalid-feedback">
+                        Favor selecionar uma cidade.
+                    </div>
                 </div>
 
                 <div class="col-md-4">
                     <label for="inputDistrict" class="form-label">Bairro</label>
-                    <select id="inputDistrict" class="form-control">
-                        <option selected>Selecione o bairro</option>
+                    <select required id="inputDistrict" class="form-control">
+                        <option selected></option>
                         <option>Cariacica</option>
                         <option>Serra</option>
                         <option>Vitória</option>
                     </select>
+                    <div class="invalid-feedback">
+                        Favor selecionar um bairro.
+                    </div>
                 </div>
 
                 <div class="col-md-4">
                     <label for="inputDependents" class="form-label">Dependentes</label>
-                    <select id="inputDependents" class="form-control">
-                        <option selected>Quantidade de dependentes</option>
+                    <select required id="inputDependents" class="form-control">
+                        <option selected></option>
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
                         <option value="4">4</option>
                         <option value="5">5+</option>
                     </select>
+                    <div class="invalid-feedback">
+                        Favor selecionar uma quantidade de dependentes.
+                    </div>
                 </div>
 
                 <hr>
@@ -132,44 +152,90 @@
                 </div>
 
             </form>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <p id="myParagraph">This is some text.</p>
+                <p>
+                    <button id="colorButton" class="btn btn-outline-secondary">Click me</button>
+                </p>
+            </div>
+        </div>
+
     </div>
 
+    <footer class="my-footer">
+        <div class="row">
+            <div class="col">
+                left
+            </div>
 
-    <div class="row">
+            <div class="col">
+                center
+            </div>
 
-        <div class="col text-center">
-
-            <a href="/search-availability" class="btn btn-success">Make Reservation Now</a>
-
+            <div class="col">
+                right
+            </div>
         </div>
-    </div>
+    </footer>
 
-</div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+        crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/notie"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+    <script>
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
+        (function () {
+            'use strict';
+            window.addEventListener('load', function () {
+                // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                var forms = document.getElementsByClassName('needs-validation');
+                // Loop over them and prevent submission
+                var validation = Array.prototype.filter.call(forms, function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (form.checkValidity() === false) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+            }, false);
+        })();
 
-<footer class="my-footer">
-    <div class="row">
-        <div class="col">
-            left
-        </div>
+        document.getElementById("colorButton").addEventListener("click", login)
 
-        <div class="col">
-            center
-        </div>
+        function login () {
+            Swal.fire({
+                        title: 'Login Form',
+                        html: `<input type="text" id="login" class="swal2-input" placeholder="Username">
+                        <input type="password" id="password" class="swal2-input" placeholder="Password">`,
+                        confirmButtonText: 'Sign in',
+                        focusConfirm: false,
+                        preConfirm: () => {
+                            const login = Swal.getPopup().querySelector('#login').value
+                            const password = Swal.getPopup().querySelector('#password').value
+                            if (!login || !password) {
+                                Swal.showValidationMessage(`Please enter login and password`)
+                            }
+                            return { login: login, password: password }
+                        }
+                    }).then((result) => {
+                        Swal.fire(`
+                            Login: ${result.value.login}
+                            Password: ${result.value.password}
+                        `.trim())
+                    })
+        }
 
-        <div class="col">
-            right
-        </div>
-    </div>
-</footer>
-
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" 
-    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" 
-    crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" 
-    integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" 
-    crossorigin="anonymous"></script>
-
+    </script>
 
 </body>
 
