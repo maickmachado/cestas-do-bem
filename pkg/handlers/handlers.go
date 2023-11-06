@@ -53,6 +53,11 @@ func (m *Repository) BeneficiaryRegister(w http.ResponseWriter, r *http.Request)
 	})
 }
 
+func (m *Repository) PostBeneficiaryRegister(w http.ResponseWriter, r *http.Request) {
+
+	w.Write([]byte("teste post ok"))
+}
+
 func (m *Repository) About(w http.ResponseWriter, r *http.Request) {
 
 	stringMap := make(map[string]string)
