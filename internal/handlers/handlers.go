@@ -3,9 +3,9 @@ package handlers
 import (
 	"net/http"
 
-	"github.com/maickmachado/cestas-do-bem/pkg/config"
-	"github.com/maickmachado/cestas-do-bem/pkg/models"
-	"github.com/maickmachado/cestas-do-bem/pkg/render"
+	"github.com/maickmachado/cestas-do-bem/internal/config"
+	"github.com/maickmachado/cestas-do-bem/internal/models"
+	"github.com/maickmachado/cestas-do-bem/internal/render"
 )
 
 // Repo the repository used by the handlers
@@ -35,7 +35,7 @@ func (m *Repository) Home(w http.ResponseWriter, r *http.Request) {
 	stringMap["test"] = "1 2 3 testando 1 2 3"
 
 	// send data to the template
-	render.RenderTemplate(w, "home.page.tmpl", &models.TemplateData{
+	render.RenderTemplate(w, r, "home.page.tmpl", &models.TemplateData{
 		StringMap: stringMap,
 	})
 }
@@ -48,14 +48,14 @@ func (m *Repository) BeneficiaryRegister(w http.ResponseWriter, r *http.Request)
 	remoteIP := m.App.Session.GetString(r.Context(), "remote_ip")
 	stringMap["remote_ip"] = remoteIP
 
-	render.RenderTemplate(w, "beneficiary-register.page.tmpl", &models.TemplateData{
+	render.RenderTemplate(w, r, "beneficiary-register.page.tmpl", &models.TemplateData{
 		StringMap: stringMap,
 	})
 }
 
 func (m *Repository) PostBeneficiaryRegister(w http.ResponseWriter, r *http.Request) {
-
-	w.Write([]byte("teste post ok"))
+	name := r.Form.Get("inputName")
+	w.Write([]byte(name))
 }
 
 func (m *Repository) About(w http.ResponseWriter, r *http.Request) {
@@ -66,7 +66,7 @@ func (m *Repository) About(w http.ResponseWriter, r *http.Request) {
 	remoteIP := m.App.Session.GetString(r.Context(), "remote_ip")
 	stringMap["remote_ip"] = remoteIP
 
-	render.RenderTemplate(w, "about.page.tmpl", &models.TemplateData{
+	render.RenderTemplate(w, r, "about.page.tmpl", &models.TemplateData{
 		StringMap: stringMap,
 	})
 }
@@ -79,7 +79,7 @@ func (m *Repository) General(w http.ResponseWriter, r *http.Request) {
 	remoteIP := m.App.Session.GetString(r.Context(), "remote_ip")
 	stringMap["remote_ip"] = remoteIP
 
-	render.RenderTemplate(w, "about.page.tmpl", &models.TemplateData{
+	render.RenderTemplate(w, r, "about.page.tmpl", &models.TemplateData{
 		StringMap: stringMap,
 	})
 }
@@ -92,7 +92,7 @@ func (m *Repository) Major(w http.ResponseWriter, r *http.Request) {
 	remoteIP := m.App.Session.GetString(r.Context(), "remote_ip")
 	stringMap["remote_ip"] = remoteIP
 
-	render.RenderTemplate(w, "about.page.tmpl", &models.TemplateData{
+	render.RenderTemplate(w, r, "about.page.tmpl", &models.TemplateData{
 		StringMap: stringMap,
 	})
 }
@@ -105,7 +105,7 @@ func (m *Repository) Contact(w http.ResponseWriter, r *http.Request) {
 	remoteIP := m.App.Session.GetString(r.Context(), "remote_ip")
 	stringMap["remote_ip"] = remoteIP
 
-	render.RenderTemplate(w, "about.page.tmpl", &models.TemplateData{
+	render.RenderTemplate(w, r, "about.page.tmpl", &models.TemplateData{
 		StringMap: stringMap,
 	})
 }

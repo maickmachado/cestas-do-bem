@@ -7,10 +7,10 @@ import (
 	"time"
 
 	"github.com/alexedwards/scs/v2"
-	"github.com/maickmachado/cestas-do-bem/pkg/config"
-	"github.com/maickmachado/cestas-do-bem/pkg/handlers"
-	"github.com/maickmachado/cestas-do-bem/pkg/render"
-	"github.com/maickmachado/cestas-do-bem/pkg/routes"
+	"github.com/maickmachado/cestas-do-bem/internal/config"
+	"github.com/maickmachado/cestas-do-bem/internal/handlers"
+	"github.com/maickmachado/cestas-do-bem/internal/render"
+	"github.com/maickmachado/cestas-do-bem/internal/routes"
 )
 
 const portNumber = ":8080"

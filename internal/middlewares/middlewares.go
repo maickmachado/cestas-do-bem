@@ -4,7 +4,7 @@ import (
 	"net/http"
 
 	"github.com/justinas/nosurf"
-	"github.com/maickmachado/cestas-do-bem/pkg/config"
+	"github.com/maickmachado/cestas-do-bem/internal/config"
 )
 
 // NoSurf adds CSRF protection to all POST requests

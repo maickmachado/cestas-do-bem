@@ -5,9 +5,9 @@ import (
 
 	"github.com/go-chi/chi"
 	"github.com/go-chi/chi/middleware"
-	"github.com/maickmachado/cestas-do-bem/pkg/config"
-	"github.com/maickmachado/cestas-do-bem/pkg/handlers"
-	"github.com/maickmachado/cestas-do-bem/pkg/middlewares"
+	"github.com/maickmachado/cestas-do-bem/internal/config"
+	"github.com/maickmachado/cestas-do-bem/internal/handlers"
+	"github.com/maickmachado/cestas-do-bem/internal/middlewares"
 )
 
 func Routes(app *config.AppConfig) http.Handler {
