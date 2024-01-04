@@ -1,9 +1,11 @@
 package handlers
 
 import (
+	"log"
 	"net/http"
 
 	"github.com/maickmachado/cestas-do-bem/internal/config"
+	"github.com/maickmachado/cestas-do-bem/internal/forms"
 	"github.com/maickmachado/cestas-do-bem/internal/models"
 	"github.com/maickmachado/cestas-do-bem/internal/render"
 )
@@ -41,6 +43,9 @@ func (m *Repository) Home(w http.ResponseWriter, r *http.Request) {
 }
 
 func (m *Repository) BeneficiaryRegister(w http.ResponseWriter, r *http.Request) {
+	var emptyRegister models.Register
+	data := make(map[string]interface{})
+	data["register"] = emptyRegister
 
 	stringMap := make(map[string]string)
 	stringMap["teste"] = "1 2 3 testando 1 2 3"
@@ -50,12 +55,45 @@ func (m *Repository) BeneficiaryRegister(w http.ResponseWriter, r *http.Request)
 
 	render.RenderTemplate(w, r, "beneficiary-register.page.tmpl", &models.TemplateData{
 		StringMap: stringMap,
+		Form:      forms.New(nil),
+		Data:      data,
 	})
 }
 
 func (m *Repository) PostBeneficiaryRegister(w http.ResponseWriter, r *http.Request) {
-	name := r.Form.Get("inputName")
-	w.Write([]byte(name))
+	//name := r.Form.Get("inputName")
+	//w.Write([]byte(name))
+	err := r.ParseForm()
+	if err != nil {
+		log.Println(err)
+		return
+	}
+
+	register := models.Register{
+		InputName:         r.Form.Get("inputName"),
+		InputStreet:       r.Form.Get("inputStreet"),
+		InputStreetNumber: r.Form.Get("inputStreetNumber"),
+		InputComp:         r.Form.Get("inputComp"),
+		InputPhone:        r.Form.Get("inputPhone"),
+	}
+
+	form := forms.New(r.PostForm)
+
+	//form.Has("inputName", r)
+	form.Required("inputName", "inputStreet", "inputStreetNumber", "inputComp", "inputPhone")
+	form.MinLength("inputName", 3, r)
+
+	if !form.Valid() {
+		data := make(map[string]interface{})
+		data["register"] = register
+
+		render.RenderTemplate(w, r, "beneficiary-register.page.tmpl", &models.TemplateData{
+			Form: form,
+			Data: data,
+		})
+		return
+	}
+
 }
 
 func (m *Repository) About(w http.ResponseWriter, r *http.Request) {
