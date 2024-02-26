@@ -61,8 +61,7 @@ func (m *Repository) BeneficiaryRegister(w http.ResponseWriter, r *http.Request)
 }
 
 func (m *Repository) PostBeneficiaryRegister(w http.ResponseWriter, r *http.Request) {
-	//name := r.Form.Get("inputName")
-	//w.Write([]byte(name))
+
 	err := r.ParseForm()
 	if err != nil {
 		log.Println(err)
@@ -79,9 +78,9 @@ func (m *Repository) PostBeneficiaryRegister(w http.ResponseWriter, r *http.Requ
 
 	form := forms.New(r.PostForm)
 
-	//form.Has("inputName", r)
 	form.Required("inputName", "inputStreet", "inputStreetNumber", "inputComp", "inputPhone")
 	form.MinLength("inputName", 3, r)
+	//TODO: adicionar um IsEmail aqui, um validador - aula 69 ou anterior
 
 	if !form.Valid() {
 		data := make(map[string]interface{})
@@ -93,6 +92,30 @@ func (m *Repository) PostBeneficiaryRegister(w http.ResponseWriter, r *http.Requ
 		})
 		return
 	}
+
+	m.App.Session.Put(r.Context(), "register", register)
+
+	http.Redirect(w, r, "/beneficiary-sumary", http.StatusSeeOther)
+}
+
+func (m *Repository) BeneficiarySumary(w http.ResponseWriter, r *http.Request) {
+
+	register, ok := m.App.Session.Get(r.Context(), "register").(models.Register)
+	if !ok {
+		log.Println("cannot get item from session")
+		m.App.Session.Put(r.Context(), "error", "cant get register from session")
+		http.Redirect(w, r, "/", http.StatusTemporaryRedirect)
+		return
+	}
+
+	m.App.Session.Remove(r.Context(), "register")
+
+	data := make(map[string]interface{})
+	data["register"] = register
+
+	render.RenderTemplate(w, r, "beneficiary-sumary.page.tmpl", &models.TemplateData{
+		Data: data,
+	})
 
 }
 

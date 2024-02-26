@@ -13,10 +13,11 @@ import (
 	"github.com/maickmachado/cestas-do-bem/internal/models"
 )
 
-//var functions = template.FuncMap{}
+var functions = template.FuncMap{}
 
 // pega a configuração na raiz da memória
 var app *config.AppConfig
+var pathToTemplates = "./templates"
 
 // NewTemplates set the configuration for the template package
 func NewTemplates(a *config.AppConfig) {
@@ -25,6 +26,9 @@ func NewTemplates(a *config.AppConfig) {
 }
 
 func AddDefaultData(td *models.TemplateData, r *http.Request) *models.TemplateData {
+	td.Flash = app.Session.PopString(r.Context(), "flash")
+	td.Error = app.Session.PopString(r.Context(), "error")
+	td.Warning = app.Session.PopString(r.Context(), "warning")
 	td.CSRFToken = nosurf.Token(r)
 	return td
 }
@@ -63,7 +67,7 @@ func CreateTemplateCache() (map[string]*template.Template, error) {
 	myCache := map[string]*template.Template{}
 
 	// get all of the files named *.page.tmpl from ./templates
-	pages, err := filepath.Glob("./templates/*.page.tmpl")
+	pages, err := filepath.Glob(fmt.Sprintf("%s/*.page.tmpl", pathToTemplates))
 	if err != nil {
 		return myCache, err
 	}
@@ -74,12 +78,12 @@ func CreateTemplateCache() (map[string]*template.Template, error) {
 		name := filepath.Base(page)
 		//associa o path 'page' com o template 'name'
 		//porque faço isso?
-		ts, err := template.New(name).ParseFiles(page)
+		ts, err := template.New(name).Funcs(functions).ParseFiles(page)
 		if err != nil {
 			return myCache, err
 		}
 
-		matches, err := filepath.Glob("./templates/*.layout.tmpl")
+		matches, err := filepath.Glob(fmt.Sprintf("%s/*.layout.tmpl", pathToTemplates))
 		if err != nil {
 			return myCache, err
 		}
@@ -87,7 +91,7 @@ func CreateTemplateCache() (map[string]*template.Template, error) {
 		if len(matches) > 0 {
 			//associa oe layouts encontrados com a variavel 'ts'
 			//entender como funciona o ParseGlob
-			ts, err = ts.ParseGlob("./templates/*.layout.tmpl")
+			ts, err = ts.ParseGlob(fmt.Sprintf("%s/*.layout.tmpl", pathToTemplates))
 			if err != nil {
 				return myCache, err
 			}

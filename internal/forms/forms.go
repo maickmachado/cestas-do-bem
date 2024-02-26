@@ -21,6 +21,7 @@ func New(data url.Values) *Form {
 	}
 }
 
+// Required checks required fields
 func (f *Form) Required(fields ...string) {
 	for _, field := range fields {
 		value := f.Get(field)
@@ -29,6 +30,8 @@ func (f *Form) Required(fields ...string) {
 		}
 	}
 }
+
+// TODO: create a function wich check if is a number
 
 // MinLength check the minimum length of string
 func (f *Form) MinLength(field string, length int, r *http.Request) bool {
