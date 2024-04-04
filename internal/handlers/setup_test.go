@@ -25,6 +25,7 @@ var app = &config.App
 var sessionManager *scs.SessionManager
 var pathToTemplates = "./../../templates"
 
+// TODO: change to TestMain
 func getRoutes() http.Handler {
 	//what am I going to put in session
 	gob.Register(models.Register{})

@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"os"
 	"time"
 
 	"github.com/alexedwards/scs/v2"
@@ -20,6 +21,8 @@ const portNumber = ":8080"
 // var app config.AppConfig
 var app = &config.App
 var sessionManager *scs.SessionManager
+var infoLog *log.Logger
+var errorLog *log.Logger
 
 func main() {
 
@@ -46,6 +49,9 @@ func run() error {
 
 	//change it to true when in production
 	app.InProduction = false
+
+	infoLog = log.New(os.Stdout, "INFO\t", log.Ldate|log.Ltime)
+	app.InfoLog = infoLog
 
 	// Initialize a new session manager and configure the session lifetime.
 	sessionManager = scs.New()
